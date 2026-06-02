@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}?v=cart-actions-2">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link is-active" href="{% url 'show_cart' username %}">Cart</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Cart</p>
+                <h1>{{username}}'s items</h1>
+                <p class="lead">Review your selected dishes before moving to checkout.</p>
+            </div>
+            <form action="{% url 'checkout' username %}">
+                <input type="submit" value="Check out">
+            </form>
+        </header>
+
+        <section class="summary-grid" aria-label="Cart summary">
+            <div class="summary-card">
+                <span>Total price</span>
+                <strong>Rs. {{total_price}}</strong>
+            </div>
+        </section>
+
+        <section class="table-card section" aria-labelledby="cart-title">
+            <div class="table-header">
+                <h2 id="cart-title">Selected items</h2>
+                <span class="status-pill">In cart</span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Item image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Unit price</th>
+                            <th>Quantity</th>
+                            <th>Line total</th>
+                            <th class="actions-column">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%  for cart_item in cartItems %}
+                            <tr>
+                                <td>
+                                    <img class="table-image" src="{{ cart_item.item.picture }}" alt="{{ cart_item.item.name }}" onerror="this.onerror=null;this.src='{% static 'delivery/img/meal-buddy-fallback.svg' %}';">
+                                </td>
+                                <td><span class="item-name">{{ cart_item.item.name }}</span></td>
+                                <td>{{ cart_item.item.description }}</td>
+                                <td><span class="price">Rs. {{ cart_item.item.price }}</span></td>
+                                <td><span class="status-pill">{{ cart_item.quantity }}</span></td>
+                                <td><span class="price">Rs. {{ cart_item.line_total }}</span></td>
+                                <td class="actions-cell">
+                                    <div class="cart-actions">
+                                        <div class="quantity-stepper" aria-label="Change quantity for {{ cart_item.item.name }}">
+                                            <form class="inline-form" action="{% url 'decrease_cart_item' cart_item.item.id username %}" method="post">
+                                                {% csrf_token %}
+                                                <button class="qty-button" type="submit" aria-label="Remove one {{ cart_item.item.name }} from cart" title="Remove one">-</button>
+                                            </form>
+                                            <form class="inline-form" action="{% url 'increase_cart_item' cart_item.item.id username %}" method="post">
+                                                {% csrf_token %}
+                                                <button class="qty-button qty-button-plus" type="submit" aria-label="Add one more {{ cart_item.item.name }} to cart" title="Add one more">+</button>
+                                            </form>
+                                        </div>
+                                        <form class="inline-form" action="{% url 'remove_from_cart' cart_item.item.id username %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="remove-button" type="submit" aria-label="Remove {{ cart_item.item.name }} from cart" title="Remove item">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

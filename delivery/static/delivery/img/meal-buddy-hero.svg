@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Meal Buddy food spread</title>
+  <desc id="desc">A colorful table scene with bowls, plates, vegetables, and a drink.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="0.52" stop-color="#ecfeff"/>
+      <stop offset="1" stop-color="#f5f3ff"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0f172a" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M0 590 C170 520 340 655 520 588 C690 526 820 450 1000 510 C1100 544 1160 602 1200 636 L1200 800 L0 800 Z" fill="#0f172a" opacity="0.08"/>
+  <g filter="url(#shadow)">
+    <ellipse cx="600" cy="432" rx="360" ry="220" fill="#ffffff" opacity="0.72"/>
+    <ellipse cx="600" cy="432" rx="312" ry="182" fill="url(#plate)"/>
+    <ellipse cx="600" cy="432" rx="230" ry="130" fill="#f8fafc"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="400" cy="350" r="130" fill="#2563eb"/>
+    <circle cx="400" cy="350" r="98" fill="#eff6ff"/>
+    <path d="M318 356 C360 300 446 296 486 354 C452 394 360 400 318 356Z" fill="#f97316"/>
+    <circle cx="360" cy="344" r="12" fill="#16a34a"/>
+    <circle cx="430" cy="344" r="12" fill="#16a34a"/>
+    <path d="M348 384 C382 408 430 408 458 384" fill="none" stroke="#b45309" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="720" cy="384" r="145" fill="#14b8a6"/>
+    <circle cx="720" cy="384" r="111" fill="#f0fdfa"/>
+    <path d="M635 402 C676 326 779 316 826 392 C786 462 686 470 635 402Z" fill="#22c55e"/>
+    <path d="M658 394 C696 354 748 342 800 388" fill="none" stroke="#166534" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="700" cy="390" r="13" fill="#f59e0b"/>
+    <circle cx="748" cy="404" r="12" fill="#ef4444"/>
+    <circle cx="776" cy="376" r="10" fill="#2563eb"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="838" y="192" width="132" height="222" rx="36" fill="#7c3aed"/>
+    <rect x="868" y="224" width="72" height="132" rx="28" fill="#f5f3ff"/>
+    <path d="M876 244 C900 262 918 252 938 270 L938 340 L876 340 Z" fill="#a78bfa"/>
+    <rect x="884" y="158" width="42" height="50" rx="13" fill="#1e293b"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="232" y="486" width="250" height="130" rx="32" fill="#ffffff"/>
+    <circle cx="296" cy="552" r="34" fill="#f97316"/>
+    <circle cx="360" cy="552" r="34" fill="#22c55e"/>
+    <circle cx="424" cy="552" r="34" fill="#38bdf8"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="670" y="526" width="310" height="92" rx="28" fill="#ffffff"/>
+    <rect x="708" y="558" width="234" height="18" rx="9" fill="#f59e0b"/>
+    <rect x="708" y="588" width="166" height="14" rx="7" fill="#ef4444"/>
+  </g>
+</svg>

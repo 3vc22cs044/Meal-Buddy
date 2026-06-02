@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <main id="main-content" class="site-main result-panel">
+        <section class="card result-card" aria-labelledby="success-title">
+            <div class="result-mark success">OK</div>
+            <p class="eyebrow">Success</p>
+            <h1 id="success-title">Login success</h1>
+            <p class="lead">You are signed in and ready to continue.</p>
+            <div class="actions">
+                <a class="btn" href="/">Back to home</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

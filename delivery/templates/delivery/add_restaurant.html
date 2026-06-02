@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Restaurant | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="open_show_restaurant">Restaurants</a>
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main form-shell">
+        <section class="form-card" aria-labelledby="restaurant-title">
+            <p class="eyebrow">Manager</p>
+            <h1 id="restaurant-title">Add restaurant</h1>
+            <p class="lead">Create a restaurant listing with the details customers use to choose.</p>
+
+            <form action="{% url 'add_restaurant' %}" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="name">Restaurant name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-field">
+                    <label for="picture">Picture URL</label>
+                    <input type="text" id="picture" name="picture">
+                </div>
+                <div class="form-field">
+                    <label for="cuisine">Cuisine</label>
+                    <input type="text" id="cuisine" name="cuisine">
+                </div>
+                <div class="form-field">
+                    <label for="rating">Rating</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" step="0.5">
+                </div>
+                <button type="submit">Add restaurant</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

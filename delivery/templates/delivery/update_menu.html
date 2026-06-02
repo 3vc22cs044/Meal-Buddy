@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Menu | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/open_show_restaurant">Restaurants</a>
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Menu manager</p>
+                <h1>{{ restaurant.name }}</h1>
+                <p class="lead">Review current dishes and add a new item to this restaurant menu.</p>
+            </div>
+        </header>
+
+        <section class="table-card" aria-labelledby="menu-table-title">
+            <div class="table-header">
+                <h2 id="menu-table-title">Current menu</h2>
+                <span class="status-pill">Editable</span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Item name</th>
+                            <th>Picture</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%  for item in itemList %}
+                            <tr>
+                                <td><span class="item-name">{{ item.name }}</span></td>
+                                <td>
+                                    <img class="table-image" src="{{ item.picture }}" alt="{{ item.name }}" onerror="this.onerror=null;this.src='{% static 'delivery/img/meal-buddy-fallback.svg' %}';">
+                                </td>
+                                <td>{{ item.description }}</td>
+                                <td><span class="price">Rs. {{ item.price }}</span></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="form-card section" aria-labelledby="add-item-title">
+            <p class="eyebrow">Add dish</p>
+            <h2 id="add-item-title">Add menu item</h2>
+            <form action="{% url 'update_menu' restaurant.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="name">Item name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" step="0.01" required>
+                </div>
+                <label class="checkbox-field" for="vegeterian">
+                    <input type="checkbox" id="vegeterian" name="vegeterian">
+                    Vegetarian
+                </label>
+                <div class="form-field">
+                    <label for="picture">Image URL</label>
+                    <input type="url" id="picture" name="picture">
+                </div>
+                <button type="submit">Add item</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Restaurant | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/open_show_restaurant">Restaurants</a>
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main form-shell">
+        <section class="form-card" aria-labelledby="update-restaurant-title">
+            <p class="eyebrow">Manager</p>
+            <h1 id="update-restaurant-title">Update restaurant</h1>
+            <p class="lead">Refresh the listing details for {{restaurant.name}}.</p>
+
+            <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="name">Restaurant name</label>
+                    <input type="text" id="name" name="name" value="{{restaurant.name}}">
+                </div>
+                <div class="form-field">
+                    <label for="picture">Picture URL</label>
+                    <input type="text" id="picture" name="picture" value="{{restaurant.picture}}">
+                </div>
+                <div class="form-field">
+                    <label for="cuisine">Cuisine</label>
+                    <input type="text" id="cuisine" name="cuisine" value="{{restaurant.cuisine}}">
+                </div>
+                <div class="form-field">
+                    <label for="rating">Rating</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" step="0.5" value="{{restaurant.rating}}">
+                </div>
+                <button type="submit">Update restaurant</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

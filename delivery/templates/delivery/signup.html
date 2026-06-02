@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="open_signin">Sign in</a>
+                <a class="nav-link is-active" href="open_signup">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main form-shell">
+        <section class="form-card" aria-labelledby="signup-title">
+            <p class="eyebrow">Create account</p>
+            <h1 id="signup-title">Sign up</h1>
+            <p class="lead">Set up your profile so checkout and delivery details are ready when you order.</p>
+
+            <form action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" autocomplete="username">
+                </div>
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password">
+                </div>
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email">
+                </div>
+                <div class="form-field">
+                    <label for="mobile">Mobile</label>
+                    <input type="text" id="mobile" name="mobile" autocomplete="tel">
+                </div>
+                <div class="form-field">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" autocomplete="street-address"></textarea>
+                </div>
+                <button type="submit">Sign up</button>
+            </form>
+            <p class="auth-note">Already have an account? <a href="open_signin">Sign in</a>.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link is-active" href="open_signin">Sign in</a>
+                <a class="nav-link" href="open_signup">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main form-shell">
+        <section class="form-card" aria-labelledby="signin-title">
+            <p class="eyebrow">Welcome back</p>
+            <h1 id="signin-title">Sign in</h1>
+            <p class="lead">Access restaurants, menus, carts, and admin tools from one clean workspace.</p>
+
+            <form action="{% url 'signin' %}" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" autocomplete="username">
+                </div>
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password">
+                </div>
+                <button type="submit">Sign in</button>
+            </form>
+            <p class="auth-note">New here? <a href="open_signup">Create an account</a>.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Home | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link is-active" href="open_show_restaurant">Manager</a>
+                <a class="nav-link" href="/admin/">Django admin</a>
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Operations</p>
+                <h1>Admin home</h1>
+                <p class="lead">Manage restaurants and menus from a focused dashboard.</p>
+            </div>
+        </header>
+
+        <section class="manager-grid" aria-label="Admin actions">
+            <article class="card manager-card card-accent-blue">
+                <div>
+                    <h2>Add restaurant</h2>
+                    <p>Create a new restaurant profile with image, cuisine, and rating details.</p>
+                </div>
+                <a class="btn" href="open_add_restaurant">Add new restaurant</a>
+            </article>
+            <article class="card manager-card card-accent-teal">
+                <div>
+                    <h2>Show restaurants</h2>
+                    <p>Review restaurant records, update details, remove entries, or manage menus.</p>
+                </div>
+                <a class="btn btn-accent" href="open_show_restaurant">Show restaurants</a>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

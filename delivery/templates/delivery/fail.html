@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Failed | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <main id="main-content" class="site-main result-panel">
+        <section class="card result-card" aria-labelledby="failed-title">
+            <div class="result-mark danger">!</div>
+            <p class="eyebrow">Sign in failed</p>
+            <h1 id="failed-title">Login failed</h1>
+            <p class="lead">Please check your username and password, then try again.</p>
+            <div class="actions">
+                <a class="btn" href="open_signin">Try again</a>
+                <a class="btn btn-secondary" href="/">Back to home</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

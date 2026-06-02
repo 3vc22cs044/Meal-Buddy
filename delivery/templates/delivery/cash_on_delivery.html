@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Details | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}?v=delivery-details-2">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Order placed</p>
+                <h1>Delivery details</h1>
+                <p class="lead">Your order is confirmed. Please keep the cash ready at the time of delivery.</p>
+            </div>
+        </header>
+
+        <div class="delivery-layout">
+            <section class="summary-card delivery-panel" aria-labelledby="customer-title">
+                <div class="delivery-panel-header">
+                    <p class="eyebrow">Confirmed delivery</p>
+                    <h2 id="customer-title">Customer details</h2>
+                </div>
+                <dl class="detail-list">
+                    <div class="detail-row">
+                        <dt>Name</dt>
+                        <dd>{{ customer.username }}</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt>Email</dt>
+                        <dd>{{ customer.email }}</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt>Mobile</dt>
+                        <dd>{{ customer.mobile }}</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt>Delivery address</dt>
+                        <dd>{{ customer.address }}</dd>
+                    </div>
+                    <div class="detail-row">
+                        <dt>Payment method</dt>
+                        <dd>{{ payment_method }}</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="table-card" aria-labelledby="order-items-title">
+                <div class="table-header">
+                    <h2 id="order-items-title">Order summary</h2>
+                    <span class="status-pill">COD</span>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Unit price</th>
+                                <th>Quantity</th>
+                                <th>Line total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart_item in cart_items %}
+                            <tr>
+                                <td><span class="item-name">{{ cart_item.item.name }}</span></td>
+                                <td><span class="price">Rs. {{ cart_item.item.price }}</span></td>
+                                <td>{{ cart_item.quantity }}</td>
+                                <td><span class="price">Rs. {{ cart_item.line_total }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="delivery-total">
+                    <span>Total payable</span>
+                    <strong>Rs. {{ total_price }}</strong>
+                </div>
+            </section>
+        </div>
+
+        <div class="actions">
+            <a class="btn" href="{% url 'my_orders' username %}">My orders</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

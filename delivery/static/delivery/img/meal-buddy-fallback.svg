@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">Meal Buddy fallback food image</title>
+  <desc id="desc">A simple illustrated plate used when a restaurant image cannot load.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#f0fdfa"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="220" fill="url(#bg)"/>
+  <circle cx="160" cy="108" r="72" fill="#2563eb" opacity="0.16"/>
+  <circle cx="160" cy="108" r="58" fill="url(#plate)"/>
+  <path d="M112 118 C134 82 187 78 210 116 C184 144 138 146 112 118Z" fill="#f97316"/>
+  <circle cx="142" cy="108" r="8" fill="#22c55e"/>
+  <circle cx="178" cy="108" r="8" fill="#22c55e"/>
+  <path d="M134 132 C150 145 174 145 188 132" fill="none" stroke="#b45309" stroke-width="8" stroke-linecap="round"/>
+  <text x="160" y="194" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="18" font-weight="700">Meal Buddy</text>
+</svg>

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page page-index">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link is-active" href="/">Home</a>
+                <a class="nav-link" href="open_signin">Sign in</a>
+                <a class="nav-link" href="open_signup">Sign up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <section class="hero" aria-labelledby="home-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Fresh meals, simple ordering</p>
+                <h1 id="home-title">Welcome to Meal Buddy</h1>
+                <p class="lead">Browse local restaurants, choose your favorites, and move from menu to checkout with a calm, focused experience.</p>
+                <div class="hero-actions">
+                    <a class="btn" href="open_signup">Sign up</a>
+                    <a class="btn btn-secondary" href="open_signin">Sign in</a>
+                </div>
+            </div>
+            <div class="hero-media" aria-hidden="true">
+                <img src="{% static 'delivery/img/meal-buddy-hero.svg' %}" alt="">
+                <div class="hero-stat">
+                    <strong>Fast checkout</strong>
+                    <span>Menus, carts, and payment steps stay easy to scan.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-grid" aria-label="Meal Buddy highlights">
+            <article class="card card-accent-blue">
+                <h3>Find restaurants</h3>
+                <p>Restaurant cards and lists are easier to compare at a glance.</p>
+            </article>
+            <article class="card card-accent-violet">
+                <h3>Build a cart</h3>
+                <p>Readable tables and clear actions help keep every order tidy.</p>
+            </article>
+            <article class="card card-accent-teal">
+                <h3>Pay smoothly</h3>
+                <p>Checkout uses focused panels with visible totals and feedback.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

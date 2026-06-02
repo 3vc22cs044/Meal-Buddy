@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link is-active" href="/">Restaurants</a>
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Restaurant directory</p>
+                <h1>Welcome {{username}}</h1>
+                <p class="lead">Choose a restaurant to view its menu and start building your order.</p>
+            </div>
+        </header>
+
+        <section class="table-card" aria-labelledby="restaurants-title">
+            <div class="table-header">
+                <h2 id="restaurants-title">Available restaurants</h2>
+                <span class="status-pill">Open now</span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Restaurant name</th>
+                            <th>Picture</th>
+                            <th>Cuisine</th>
+                            <th>Rating</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%  for r in restaurantList %}
+                            <tr>
+                                <td><span class="restaurant-name">{{ r.name }}</span></td>
+                                <td>
+                                    <img class="table-image" src="{{ r.picture }}" alt="{{ r.name }}" onerror="this.onerror=null;this.src='{% static 'delivery/img/meal-buddy-fallback.svg' %}';">
+                                </td>
+                                <td>{{ r.cuisine }}</td>
+                                <td><span class="rating-badge">{{ r.rating }}</span></td>
+                                <td>
+                                    <a class="btn btn-accent" href="{% url 'view_menu' r.id username %}">
+                                        View menu
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>

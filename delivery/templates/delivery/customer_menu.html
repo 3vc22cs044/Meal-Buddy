@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}?v=cart-toast-1">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Restaurants</a>
+                <a class="nav-link" href="{% url 'show_cart' username %}">Cart</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Menu</p>
+                <h1>Welcome {{username}}</h1>
+                <p class="lead">Choose items from the current menu and add them to your cart.</p>
+            </div>
+            <a class="btn btn-secondary" href="{% url 'show_cart' username %}">Go to cart</a>
+        </header>
+
+        <section class="table-card" aria-labelledby="menu-title">
+            <div class="table-header">
+                <h2 id="menu-title">Menu items</h2>
+                <span class="status-pill">Ready to order</span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Item name</th>
+                            <th>Picture</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%  for item in itemList %}
+                            <tr>
+                                <td><span class="item-name">{{ item.name }}</span></td>
+                                <td>
+                                    <img class="table-image" src="{{ item.picture }}" alt="{{ item.name }}" onerror="this.onerror=null;this.src='{% static 'delivery/img/meal-buddy-fallback.svg' %}';">
+                                </td>
+                                <td>{{ item.description }}</td>
+                                <td><span class="price">Rs. {{ item.price }}</span></td>
+                                <td>
+                                    <a class="btn btn-accent add-cart-link" href="{% url 'add_to_cart' item.id username %}" data-item-name="{{ item.name }}">
+                                        Add to cart
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+    <div class="cart-toast" role="status" aria-live="polite">Item added to cart</div>
+    <script>
+        const cartToast = document.querySelector('.cart-toast');
+        let cartToastTimer;
+
+        function showCartToast(message) {
+            cartToast.textContent = message;
+            cartToast.classList.add('is-visible');
+            clearTimeout(cartToastTimer);
+            cartToastTimer = setTimeout(function() {
+                cartToast.classList.remove('is-visible');
+            }, 2200);
+        }
+
+        document.querySelectorAll('.add-cart-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const itemName = link.dataset.itemName || 'Item';
+
+                fetch(link.href, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Cart request failed');
+                    }
+                    showCartToast(itemName + ' added to cart');
+                })
+                .catch(function() {
+                    showCartToast('Could not add item. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

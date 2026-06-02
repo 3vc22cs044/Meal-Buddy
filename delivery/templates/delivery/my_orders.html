@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Meal Buddy</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'delivery/css/pages.css' %}?v=my-orders-1">
+</head>
+<body class="site-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand-mark">MB</span>
+                <span>Meal Buddy</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="site-main">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Order history</p>
+                <h1>My orders</h1>
+                <p class="lead">Review the orders you have placed with delivery and payment details.</p>
+            </div>
+        </header>
+
+        {% if order_list %}
+            <div class="orders-list">
+                {% for order in order_list %}
+                    <section class="table-card order-card" aria-labelledby="order-{{ order.id }}-title">
+                        <div class="order-card-header">
+                            <div>
+                                <p class="eyebrow">Order #{{ order.id }}</p>
+                                <h2 id="order-{{ order.id }}-title">{{ order.status }}</h2>
+                            </div>
+                            <span class="status-pill">{{ order.payment_method }}</span>
+                        </div>
+
+                        <div class="order-meta">
+                            <div>
+                                <span>Placed on</span>
+                                <strong>{{ order.created_at|date:"d M Y, h:i A" }}</strong>
+                            </div>
+                            <div>
+                                <span>Delivery address</span>
+                                <strong>{{ order.delivery_address }}</strong>
+                            </div>
+                            <div>
+                                <span>Total</span>
+                                <strong>Rs. {{ order.total_price }}</strong>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Restaurant</th>
+                                        <th>Unit price</th>
+                                        <th>Quantity</th>
+                                        <th>Line total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                        <tr>
+                                            <td><span class="item-name">{{ item.item_name }}</span></td>
+                                            <td>{{ item.restaurant_name }}</td>
+                                            <td><span class="price">Rs. {{ item.unit_price }}</span></td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td><span class="price">Rs. {{ item.line_total }}</span></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+        {% else %}
+            <section class="card empty-state">
+                <h2>No orders yet</h2>
+                <p class="lead">Your placed orders will appear here after checkout.</p>
+                <div class="actions">
+                    <a class="btn" href="/">Browse restaurants</a>
+                </div>
+            </section>
+        {% endif %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">Meal Buddy</div>
+    </footer>
+</body>
+</html>
