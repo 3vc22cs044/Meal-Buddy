@@ -73,10 +73,22 @@ WSGI_APPLICATION = 'meal_buddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import os
+import shutil
+
+if os.environ.get('VERCEL') == '1':
+    db_path = '/tmp/db.sqlite3'
+    if not os.path.exists(db_path):
+        original_db = BASE_DIR / 'db.sqlite3'
+        if os.path.exists(original_db):
+            shutil.copy2(original_db, db_path)
+else:
+    db_path = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': db_path,
     }
 }
 
